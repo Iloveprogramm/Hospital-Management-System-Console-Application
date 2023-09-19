@@ -28,7 +28,7 @@ namespace HospitalManagementSystem
                 Console.WriteLine("\t\t\t  8. Exit                                                 ");
 
                 Console.Write("\n\t\t\t Please select an option (1-8): ");
-
+                //test
                 // 获取当前行和列位置
                 int top = Console.CursorTop;
                 int left = Console.CursorLeft;
