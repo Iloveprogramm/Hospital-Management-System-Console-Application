@@ -12,3 +12,17 @@ D:\hospital\Hospital System\Hospital System\obj\Debug\net6.0\refint\Hospital Sys
 D:\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.pdb
 D:\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.genruntimeconfig.cache
 D:\hospital\Hospital System\Hospital System\obj\Debug\net6.0\ref\Hospital System.dll
+D:\Hospital Management System\hospital\Hospital System\Hospital System\bin\Debug\net6.0\Hospital System.exe
+D:\Hospital Management System\hospital\Hospital System\Hospital System\bin\Debug\net6.0\Hospital System.deps.json
+D:\Hospital Management System\hospital\Hospital System\Hospital System\bin\Debug\net6.0\Hospital System.runtimeconfig.json
+D:\Hospital Management System\hospital\Hospital System\Hospital System\bin\Debug\net6.0\Hospital System.dll
+D:\Hospital Management System\hospital\Hospital System\Hospital System\bin\Debug\net6.0\Hospital System.pdb
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.GeneratedMSBuildEditorConfig.editorconfig
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.AssemblyInfoInputs.cache
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.AssemblyInfo.cs
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.csproj.CoreCompileInputs.cache
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.dll
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\refint\Hospital System.dll
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.pdb
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\Hospital System.genruntimeconfig.cache
+D:\Hospital Management System\hospital\Hospital System\Hospital System\obj\Debug\net6.0\ref\Hospital System.dll

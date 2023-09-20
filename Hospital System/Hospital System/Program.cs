@@ -7,6 +7,8 @@ namespace HospitalManagementSystem
     class Program
     {
         static Admin admin = new Admin();
+        static Patient patient = new Patient();
+        static Doctor doctor = new Doctor();
 
         static void Main(string[] args)
         {
@@ -31,7 +33,18 @@ namespace HospitalManagementSystem
                 Console.Write("\t\t\t Enter Password: ");
                 string password = ReadPassword(); // 使用自定义的ReadPassword方法来读取密码并显示为*
 
+
                 if (IsValidCredentials(id, password))
+                {
+                    Console.WriteLine("\t\t\t Login successful!");
+                    patient.showMenu();
+                }
+                else if (IsDoctorValidCredentials(id, password))
+                {
+                    Console.WriteLine("\t\t\t Login successful!");
+                    doctor.showMenu();
+                }
+                else if (IsAdminValidCredentials(id, password))
                 {
                     Console.WriteLine("\t\t\t Login successful!");
                     admin.ShowMenu();
@@ -62,17 +75,40 @@ namespace HospitalManagementSystem
             {
                 return true;
             }
+            return false;
+        }
 
-            // 检查医生文件
+        static bool IsDoctorValidCredentials(string id, string password)
+        {
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(password))
+            {
+                return false;
+            }
+
+            // 检查患者文件
             if (CheckCredentialsInFile(id, password, "doctors.txt"))
             {
                 return true;
             }
-
             return false;
         }
 
-        static bool CheckCredentialsInFile(string id, string password, string filePath)
+        static bool IsAdminValidCredentials(string id, string password)
+            {
+                if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(password))
+                {
+                    return false;
+                }
+
+                // 检查患者文件
+                if (CheckCredentialsInFile(id, password, "admin.txt"))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            static bool CheckCredentialsInFile(string id, string password, string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -83,7 +119,6 @@ namespace HospitalManagementSystem
 
             foreach (string line in lines)
             {
-                Console.WriteLine("Read line: " + line);
                 var parts = line.Split(',');
                 if (parts.Length > 1 && parts[0] == id && parts[1] == password)
                     return true;

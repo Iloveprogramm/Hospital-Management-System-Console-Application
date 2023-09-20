@@ -17,5 +17,17 @@ namespace HospitalManagementSystem
         {
             return $"{ID},{Password},{FirstName},{LastName},{Email},{Phone},{StreetNumber},{Street},{City},{State}";
         }
+
+        public void showMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("\t\t\t ===========================================================");
+            Console.WriteLine("\t\t\t |       DOTNET Hospital Management System - ADMIN         |");
+            Console.WriteLine("\t\t\t ===========================================================");
+            Console.WriteLine("\t\t\t |                 Patients Menu                           |");
+            Console.WriteLine("\t\t\t ===========================================================");
+            Console.WriteLine("\t\t\t Press any key to continue...");
+            Console.ReadLine();
+        }
     }
 }
