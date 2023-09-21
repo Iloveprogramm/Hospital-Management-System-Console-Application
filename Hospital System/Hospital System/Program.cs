@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace HospitalManagementSystem
 {
@@ -26,25 +25,51 @@ namespace HospitalManagementSystem
                 Console.WriteLine("\t\t\t |                 PLEASE LOGIN TO START                   |");
                 Console.WriteLine("\t\t\t |                                                         |");
                 Console.WriteLine("\t\t\t ===========================================================");
-                Console.WriteLine(); // 新增一行，使输入处于下方
-                Console.Write("\t\t\t Enter User ID: "); // 使用\t进行缩进
+                Console.WriteLine();
+                Console.Write("\t\t\t Enter User ID: ");
                 string id = Console.ReadLine();
 
                 Console.Write("\t\t\t Enter Password: ");
-                string password = ReadPassword(); // 使用自定义的ReadPassword方法来读取密码并显示为*
+                string password = ReadPassword();
 
-
-                if (IsValidCredentials(id, password))
+                string details;
+                if ((details = IsValidCredentials(id, password, "patients.txt")) != null)
                 {
                     Console.WriteLine("\t\t\t Login successful!");
+
+                    var patientDetails = details.Split(',');
+                    patient.ID = int.Parse(patientDetails[0]);
+                    patient.Password = patientDetails[1];
+                    patient.FirstName = patientDetails[2];
+                    patient.LastName = patientDetails[3];
+                    patient.Email = patientDetails[4];
+                    patient.Phone = patientDetails[5];
+                    patient.StreetNumber = patientDetails[6];
+                    patient.Street = patientDetails[7];
+                    patient.City = patientDetails[8];
+                    patient.State = patientDetails[9];
+
                     patient.showMenu();
                 }
-                else if (IsDoctorValidCredentials(id, password))
+                else if ((details = IsValidCredentials(id, password, "doctors.txt")) != null)
                 {
                     Console.WriteLine("\t\t\t Login successful!");
+
+                    var doctorDetails = details.Split(',');
+                    doctor.ID = int.Parse(doctorDetails[0]);
+                    doctor.Password = doctorDetails[1];
+                    doctor.FirstName = doctorDetails[2];
+                    doctor.LastName = doctorDetails[3];
+                    doctor.Email = doctorDetails[4];
+                    doctor.Phone = doctorDetails[5];
+                    doctor.StreetNumber = doctorDetails[6];
+                    doctor.Street = doctorDetails[7];
+                    doctor.City = doctorDetails[8];
+                    doctor.State = doctorDetails[9];
+
                     doctor.showMenu();
                 }
-                else if (IsAdminValidCredentials(id, password))
+                else if (IsValidCredentials(id, password, "admin.txt") != null)
                 {
                     Console.WriteLine("\t\t\t Login successful!");
                     admin.ShowMenu();
@@ -52,67 +77,27 @@ namespace HospitalManagementSystem
                 else
                 {
                     Console.WriteLine("\n\t\t\t Invalid credentials!");
-                    Console.Write("\t\t\t Do you want to retry? (Y/N): "); // 【功能：询问是否重新输入】
+                    Console.Write("\t\t\t Do you want to retry? (Y/N): ");
                     string choice = Console.ReadLine().ToUpper();
 
                     if (choice != "Y")
                     {
-                        Environment.Exit(0); // 【功能：输入N时退出程序】
+                        Environment.Exit(0);
                     }
                 }
             }
         }
 
-        static bool IsValidCredentials(string id, string password)
+        static string IsValidCredentials(string id, string password, string filePath)
         {
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(password))
             {
-                return false;
+                return null;
             }
 
-            // 检查患者文件
-            if (CheckCredentialsInFile(id, password, "patients.txt"))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        static bool IsDoctorValidCredentials(string id, string password)
-        {
-            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(password))
-            {
-                return false;
-            }
-
-            // 检查患者文件
-            if (CheckCredentialsInFile(id, password, "doctors.txt"))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        static bool IsAdminValidCredentials(string id, string password)
-            {
-                if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(password))
-                {
-                    return false;
-                }
-
-                // 检查患者文件
-                if (CheckCredentialsInFile(id, password, "admin.txt"))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            static bool CheckCredentialsInFile(string id, string password, string filePath)
-        {
             if (!File.Exists(filePath))
             {
-                return false;
+                return null;
             }
 
             string[] lines = File.ReadAllLines(filePath);
@@ -121,35 +106,28 @@ namespace HospitalManagementSystem
             {
                 var parts = line.Split(',');
                 if (parts.Length > 1 && parts[0] == id && parts[1] == password)
-                    return true;
+                    return line;  // Return the entire line of details
             }
 
-            return false;
+            return null;
         }
-
 
         static string ReadPassword()
         {
             string password = "";
             while (true)
             {
-                var key = Console.ReadKey(intercept: true); // 不在控制台上显示按键
+                var key = Console.ReadKey(intercept: true);
 
-                // 如果按下Enter键，结束读取
                 if (key.Key == ConsoleKey.Enter) break;
 
-                // 如果按下Backspace键并且密码不为空
                 if (key.Key == ConsoleKey.Backspace && password.Length > 0)
                 {
-                    // 删除密码的最后一个字符
                     password = password.Substring(0, password.Length - 1);
-
-                    // 删除控制台上的最后一个星号
                     Console.Write("\b \b");
                 }
                 else if (key.Key != ConsoleKey.Backspace)
                 {
-                    // 如果不是Backspace键，添加字符到密码并显示一个星号
                     Console.Write("*");
                     password += key.KeyChar;
                 }
@@ -157,5 +135,52 @@ namespace HospitalManagementSystem
             return password;
         }
 
+        public static List<Doctor> LoadDoctors()
+        {
+            List<Doctor> doctors = new List<Doctor>();
+
+            if (!File.Exists("doctors.txt")) return doctors;
+
+            foreach (var line in File.ReadAllLines("doctors.txt"))
+            {
+                var parts = line.Split(',');
+                if (parts.Length < 10) continue;
+
+                doctors.Add(new Doctor
+                {
+                    ID = int.Parse(parts[0]),
+                    Password = parts[1],
+                    FirstName = parts[2],
+                    LastName = parts[3],
+                    Email = parts[4],
+                    Phone = parts[5],
+                    StreetNumber = parts[6],
+                    Street = parts[7],
+                    City = parts[8],
+                    State = parts[9]
+                });
+            }
+
+            return doctors;
+        }
+
+        public static Doctor LoadDoctorByName(string doctorFullName)
+        {
+            var doctors = LoadDoctors();
+            foreach (var doctor in doctors)
+            {
+                if (doctorFullName == $"{doctor.FirstName} {doctor.LastName}")
+                {
+                    return doctor;
+                }
+            }
+            return null;
+        }
+
+        public static void SaveAppointment(string patientName, string doctorName, string description)
+        {
+            File.AppendAllText("appointment.txt", $"{patientName},{doctorName},{description}\n");
+        }
     }
+
 }

@@ -2,3 +2,5 @@
 730010,8316,u,w,w,22,sdf,sdfwe,sydney,nsw
 641041,2401,Chenjun,Zheng,Chenjun@gmail.com,045100223,123,beral,sydney,nsw
 542474,2038,yujinwen,yujinwen,yuji@ga.com,2112412,21,berala,sydeny,nsw
+924185,1243,Zhaoyu,Pan,ZhaoyuPanstudent@student.uts.edu.au,01231232,21,rhode,sydeny,nsw
+182161,4875,Zhiyi,He,ZhiyiHe@student.uts.edu.au,045110023,12,berala,Sydney,nsw
