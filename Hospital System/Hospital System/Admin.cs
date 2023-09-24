@@ -29,11 +29,11 @@ namespace HospitalManagementSystem
 
                 Console.Write("\n\t\t\t Please select an option (1-8): ");
 
-                // 获取当前行和列位置
+                
                 int top = Console.CursorTop;
                 int left = Console.CursorLeft;
 
-                // 将光标移到你希望的位置
+                
                 Console.SetCursorPosition(left, top);
 
                 string choice = Console.ReadLine();
@@ -81,7 +81,7 @@ namespace HospitalManagementSystem
                 return;
             }
 
-            // 清除屏幕并展示新的菜单
+           
             Console.Clear();
             Console.WriteLine("\t\t\t ===========================================================");
             Console.WriteLine("\t\t\t |             DOTNET Hospital Management System           |");
@@ -91,7 +91,7 @@ namespace HospitalManagementSystem
             Console.WriteLine("\t\t\t All doctors registered to the DOTNET Hospital Management System".PadLeft(72));
 
 
-            // 标题行
+           
             Console.WriteLine($"\n\t\t\t {"Name",-20}| {"Email",-30}| {"Phone",-15}| {"Address",-40}");
             Console.WriteLine("\t\t\t ===============================================================================");
 
@@ -111,7 +111,7 @@ namespace HospitalManagementSystem
                 string phone = details[5].Trim();
                 string address = details[6].Trim() + ", " + details[7].Trim();
 
-                // 打印每行信息
+               
                 Console.WriteLine($"\t\t\t {name,-20}| {email,-30}| {phone,-15}| {address,-40}");
             }
 
@@ -136,7 +136,7 @@ namespace HospitalManagementSystem
             foreach (var line in doctorLines)
             {
                 var details = line.Split(',');
-                if (details.Length != 10) // 注意现在是10个值
+                if (details.Length != 10) 
                 {
                     Console.WriteLine($"Skipping malformed line: " + line);
                     continue;
@@ -146,7 +146,7 @@ namespace HospitalManagementSystem
 
                 if (id == inputID)
                 {
-                    string name = "Name: " + details[2] + " " + details[3];  // 注意索引的变化
+                    string name = "Name: " + details[2] + " " + details[3];  
                     string email = "Email: " + details[4];
                     string phone = "Phone: " + details[5];
                     string address = "Address: " + details[6] + ", " + details[7] + ", " + details[8] + ", " + details[9];
@@ -170,7 +170,7 @@ namespace HospitalManagementSystem
                 return;
             }
 
-            // 清除屏幕并展示新的菜单
+           
             Console.Clear();
             Console.WriteLine("\t\t\t ===========================================================");
             Console.WriteLine("\t\t\t |             DOTNET Hospital Management System           |");
@@ -180,7 +180,7 @@ namespace HospitalManagementSystem
             Console.WriteLine("\t\t\t All Patients registered to the DOTNET Hospital Management System".PadLeft(72));
 
 
-            // 标题行
+          
             Console.WriteLine($"\n\t\t\t {"Name",-20}| {"Email",-30}| {"Phone",-15}| {"Address",-40}");
             Console.WriteLine("\t\t\t ===============================================================================");
 
@@ -200,7 +200,7 @@ namespace HospitalManagementSystem
                 string phone = details[5].Trim();
                 string address = details[6].Trim() + ", " + details[7].Trim();
 
-                // 打印每行信息
+                
                 Console.WriteLine($"\t\t\t {name,-20}| {email,-30}| {phone,-15}| {address,-40}");
             }
 
@@ -225,7 +225,7 @@ namespace HospitalManagementSystem
             foreach (var line in doctorLines)
             {
                 var details = line.Split(',');
-                if (details.Length != 10) // 注意现在是10个值
+                if (details.Length != 10) 
                 {
                     Console.WriteLine($"Skipping malformed line: " + line);
                     continue;
@@ -235,7 +235,7 @@ namespace HospitalManagementSystem
 
                 if (id == inputID)
                 {
-                    string name = "Name: " + details[2] + " " + details[3];  // 注意索引的变化
+                    string name = "Name: " + details[2] + " " + details[3];  
                     string email = "Email: " + details[4];
                     string phone = "Phone: " + details[5];
                     string address = "Address: " + details[6] + ", " + details[7] + ", " + details[8] + ", " + details[9];
@@ -332,7 +332,7 @@ namespace HospitalManagementSystem
         private int GenerateDoctorID()
         {
             Random rnd = new Random();
-            return rnd.Next(100000, 999999);  // 六位数的ID
+            return rnd.Next(100000, 999999); 
         }
 
 

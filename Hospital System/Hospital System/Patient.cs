@@ -117,11 +117,11 @@ namespace HospitalManagementSystem
             while (true)
             {
                 Console.Write("\t\t\t Please choose a doctor (1, 2, 3...): ");
-                // 获取当前行和列位置
+                
                 int top = Console.CursorTop;
                 int left = Console.CursorLeft;
 
-                // 将光标移到你希望的位置
+                
                 Console.SetCursorPosition(left, top);
                 if (int.TryParse(Console.ReadLine(), out choice) && choice > 0 && choice <= doctors.Count) break;
                 Console.WriteLine("\t\t\t Invalid choice. Do you want to try again(Y/N)?");
